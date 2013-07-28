@@ -1,9 +1,9 @@
-import threading
 import sys
 if sys.version_info[0] > 2:
     import queue
 else:
     import Queue as queue
+import threading
 from collections import deque
 
 class Worker(threading.Thread):
