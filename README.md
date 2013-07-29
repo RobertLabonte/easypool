@@ -8,7 +8,7 @@ Python module to easily create threadpools and serverpools with additional advan
 Install from PyPi using [pip](http://www.pip-installer.org/en/latest/), a
 package manager for Python.
 
-    $ pip install easypool
+    $ pip install easypool <-- Having issues with pypi, will be up shortly
 
 Do not have pip installed? Try installing it, by running this from the command
 line:
