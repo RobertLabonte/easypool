@@ -36,7 +36,8 @@ class Worker(threading.Thread):
 
 class ThreadPool:
     """Pool of threads consuming tasks from a queue"""
-    def __init__(self, num_threads, send_item=False, min_pool=0, max_pool=0):
+    def __init__(self, num_threads, send_item=False, min_pool=0, max_pool=0, queue_type='fifo'):
+        self.priority_queue = False
         min_pool = int(round(min_pool))
         max_pool = int(round(max_pool))
         if max_pool != 0:
@@ -77,7 +78,10 @@ class ThreadPool:
             num_threads = new_num_threads
         if pool_size > max_pool and max_pool != 0:
             pool_size = int(max_pool)
-        self.tasks = queue.Queue(pool_size)
+        if queue_type == 'fifo':
+            self.tasks = queue.Queue(pool_size)
+        elif queue_type == 'lifo':
+            self.tasks = queue.LifoQueue(pool_size)
         for _ in range(pool_size):
             Worker(self.tasks, send_item, num_threads)
         self.pool_size = pool_size
@@ -85,7 +89,11 @@ class ThreadPool:
     def add_task(self, func, *args, **kargs):
         """Add a task to the queue"""
         self.tasks.put((func, args, kargs))
-
+    
     def wait_completion(self):
         """Wait for completion of all the tasks in the queue"""
         self.tasks.join()
+
+#class LifoThreadPool(ThreadPool):
+#        """Pool of threads consuming tasks from a queue"""
+#            def __init__(self):
