@@ -1,4 +1,4 @@
 easypool
 ========
 
-Python module for easily creating threadpools with additional advanced functionality
+Python module to easily create threadpools with additional advanced functionality
