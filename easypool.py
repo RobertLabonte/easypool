@@ -93,7 +93,3 @@ class ThreadPool:
     def wait_completion(self):
         """Wait for completion of all the tasks in the queue"""
         self.tasks.join()
-
-#class LifoThreadPool(ThreadPool):
-#        """Pool of threads consuming tasks from a queue"""
-#            def __init__(self):
