@@ -4,7 +4,7 @@ setup(
     name='easypool',
     version='1.0',
     packages=['easypool',],
-    license='GPLv2',
+    license='MIT',
     long_description=open('README.md').read(),
     author='Robert Labonte',
     author_email='rlabonte@gmail.com',
